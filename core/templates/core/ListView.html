@@ -47,7 +47,9 @@
       {% for post in object_list %}
         <tr>
           <th scope="row">{{ forloop.counter}}</th>
-          <td>{{ post.title }}</td>
+          <td>
+              <a href="{% url 'core:post_detail'  post.id%}" </a> {{ post.title }}
+          </td>
           <td>{{ post.author|default:'-' }}</td>
         </tr>
       {% endfor %}
