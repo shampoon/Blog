@@ -22,5 +22,5 @@ def index(request):
 
 
 def post_detail(request, pk):
-    post = core.models.Post.objects.all().filter(id=pk)
-    return render(request, 'core/index.html', {'object_list': post})
+    post = core.models.Post.objects.get(id=pk)
+    return render(request, 'core/posts/detail.html', {'object': post})
