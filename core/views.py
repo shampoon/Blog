@@ -1,13 +1,26 @@
 from django.shortcuts import render
 
 import core.models
+from django.views.generic import ListView
+
+from .models import Post
 
 
-def PostsList(request):
+# class BlogListView(ListView):
+#    model = Post
+#    template_name = 'home.html'
+
+
+def list_view(request):
+    posts = core.models.Post.objects.all()
+    return render(request, 'core/ListView.html', {'object_list': posts})
+
+
+def index(request):
     posts = core.models.Post.objects.all()
     return render(request, 'core/index.html', {'object_list': posts})
 
 
-def PostDetail(request, pk):
+def post_detail(request, pk):
     post = core.models.Post.objects.all().filter(id=pk)
     return render(request, 'core/index.html', {'object_list': post})

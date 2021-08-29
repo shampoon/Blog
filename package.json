@@ -1,6 +1,6 @@
 {
-  "name": "Django_test_project",
-  "version": "1.0.0",
+  "name": "Blog",
+  "version": "0.0.1",
   "description": "",
   "dependencies": {
     "bootstrap": "^5.1.0"
