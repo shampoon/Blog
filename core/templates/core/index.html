@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" >
 
-    <title>Hello, world!</title>
+    <title>{{ title }}</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,7 +35,10 @@
         </div>
       </div>
     </nav>
-   <h1>Добро пожаловать на сайт интереснейших блогов</h1>
+
+    {%  block content %}
+        <h1>Добро пожаловать на сайт интереснейших блогов</h1>
+    {% endblock %}
 
     <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js" ></script>
 
