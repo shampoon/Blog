@@ -21,7 +21,7 @@ import core.views
 app_name = 'core'
 
 urlpatterns = [
-    path('index', core.views.index, name='index'),
-    path('list_view', core.views.list_view, name='list_view'),
-    path('post/<int:pk>', core.views.post_detail, name='post_detail'),
+    path('index', core.views.IndexView.as_view(), name='index'),
+    path('list_view', core.views.ListView.as_view(), name='list_view'),
+    path('post/<int:pk>', core.views.PostDetail.as_view(), name='post_detail'),
 ]
