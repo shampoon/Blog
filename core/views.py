@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 import core.models
+import core.forms
+import core.filters
+
 from django.views.generic import ListView, TemplateView, DetailView
 
 from .models import Post
@@ -24,15 +27,24 @@ class IndexView(TitleMixin, TemplateView):
 
 
 class ListView(TitleMixin, ListView):
-    #template_name = 'post_list.html'
     title = 'Посты'
 
+    def get_filters(self) -> core.filters.Post:
+        return core.filters.Post(self.request.GET)
+
+    def get_context_data(self, **kwargs):
+        c = super().get_context_data()
+        # c['form'] = core.forms.PostSearch(self.request.GET or None)
+        c['filters'] = self.get_filters()
+        return c
+
     def get_queryset(self):
-        queryset = core.models.Post.objects.all()
-        name = self.request.GET.get('name')
-        if name:
-            queryset = core.models.Post.objects.filter(Q(body__icontains=name) | Q(title__icontains=name))
-        return queryset
+        return self.get_filters().qs
+        # queryset = core.models.Post.objects.all()
+        # name = self.request.GET.get('name')
+        # if name:
+        #     queryset = core.models.Post.objects.filter(Q(body__icontains=name) | Q(title__icontains=name))
+        # return queryset
 
 
 class PostDetail(TitleMixin, DetailView):
