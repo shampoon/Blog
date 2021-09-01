@@ -1,5 +1,6 @@
 {% extends 'core/index.html' %}
 {% block content %}
-        <h1>{{ object.author|default:'-' }}: {{ object.title }}</h1>
-        <p>{{ object.body|default:'-' }}</p>
+    <h1>{{ object.author|default:'-' }}: {{ object.title }}</h1>
+    <p>{{ object.body|default:'-' }}</p>
+    <a href="{% url 'core:post_update'  post.id%}"> Редактировать</a>
 {% endblock %}

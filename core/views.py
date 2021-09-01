@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
+from django.urls import reverse
+
 import core.models
 import core.forms
 import core.filters
 
-from django.views.generic import ListView, TemplateView, DetailView
+from django.views.generic import ListView, TemplateView, DetailView, UpdateView, DeleteView
 
 from .models import Post
 
@@ -52,3 +54,24 @@ class PostDetail(TitleMixin, DetailView):
 
     def get_title(self):
         return str(self.get_object())
+
+
+class PostUpdate(TitleMixin, UpdateView):
+    queryset = core.models.Post.objects.all()
+    form_class = core.forms.PostEdit
+
+    def get_title(self) -> str:
+        return 'Редактирование' + str(self.get_object())
+
+    def get_success_url(self):
+        return reverse('core:list_view')
+
+
+class PostDelete(TitleMixin, DeleteView):
+    queryset = core.models.Post.objects.all()
+
+    def get_title(self):
+        return 'Удаление ' + str(self.get_object())
+
+    def get_success_url(self):
+        return reverse('core:list_view')
