@@ -20,5 +20,7 @@
         </li>
       </ul>
     </div>
+
+      <a class="nav-link" href="/admin/{#{% url 'core:index' %}#}">{% firstof user.username 'Войти'%}</a>
   </div>
 </nav>

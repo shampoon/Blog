@@ -20,6 +20,8 @@ class TitleMixin:
     def get_context_data(self, **kwargs):
         c = super().get_context_data()
         c['title'] = self.get_title()
+        c['user'] = self.request.user
+        # c['owner'] = self.request.user.id ==
         return c
 
 
@@ -36,7 +38,6 @@ class ListView(TitleMixin, ListView):
 
     def get_context_data(self, **kwargs):
         c = super().get_context_data()
-        # c['form'] = core.forms.PostSearch(self.request.GET or None)
         c['filters'] = self.get_filters()
         return c
 
