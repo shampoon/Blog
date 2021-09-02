@@ -1,0 +1,2 @@
+docker run --rm -ti -v /var/docker/Blog/data/:/data/ -p0.0.0.0:8001:8000 shampoon/djanago_blog
+docker build -t shampoon/djanago_blog .
