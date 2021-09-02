@@ -9,9 +9,15 @@ class Post(models.Model):
         on_delete=models.CASCADE,
     )
     body = models.TextField('Блог')
-    pub_date = models.DateField('Дата публикации')
-    mod_date = models.DateField('Дата модификации')
-    rating = models.IntegerField('Рейтинг')
+    pub_date = models.DateField(
+        'Дата публикации',
+        auto_now_add=True)
+    mod_date = models.DateField(
+        'Дата модификации',
+        auto_now=True)
+    rating = models.IntegerField(
+        'Рейтинг',
+        default=0)
 
     def __str__(self):
         return self.title

@@ -10,4 +10,5 @@ class PostSearch(forms.Form):
 class PostEdit(forms.ModelForm):
     class Meta:
         model = core.models.Post
-        fields = ('title', 'body')
+        fields = ('title', 'body', 'author')
+        widgets = {'author': forms.HiddenInput()}

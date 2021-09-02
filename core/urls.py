@@ -26,4 +26,5 @@ urlpatterns = [
     path('post/<int:pk>', core.views.PostDetail.as_view(), name='post_detail'),
     path('post/<int:pk>/edit/', core.views.PostUpdate.as_view(), name='post_update'),
     path('post/<int:pk>/delete/', core.views.PostDelete.as_view(), name='post_delete'),
+    path('post/create/', core.views.PostCreate.as_view(), name='post_create'),
 ]

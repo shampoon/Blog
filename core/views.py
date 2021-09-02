@@ -6,7 +6,7 @@ import core.models
 import core.forms
 import core.filters
 
-from django.views.generic import ListView, TemplateView, DetailView, UpdateView, DeleteView
+from django.views.generic import ListView, TemplateView, DetailView, UpdateView, DeleteView, CreateView
 
 from .models import Post
 
@@ -76,3 +76,25 @@ class PostDelete(TitleMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('core:list_view')
+
+
+class PostCreate(TitleMixin, CreateView):
+    title = 'Создание нового поста'
+    queryset = core.models.Post.objects.all()
+    form_class = core.forms.PostEdit
+    template_name = 'core/post_form.html'
+
+    def get_success_url(self):
+        return reverse('core:list_view')
+
+    def post(self, request, **kwargs):
+        request.POST = request.POST.copy()
+        request.POST['author'] = request.user.id
+        return super(PostCreate, self).post(request, **kwargs)
+
+    # def post(self, request, *args, **kwargs):
+    #     p = super().post(request, *args, **kwargs)
+    #     # if request.method in ('POST', 'PUT'):
+    #         data = request.POST.copy()
+    #         data['author'] = request.user.id
+    #         form = PublicTicketForm(data, request.FILES)
