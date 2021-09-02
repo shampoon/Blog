@@ -22,7 +22,7 @@ app_name = 'core'
 
 urlpatterns = [
     path('index', core.views.IndexView.as_view(), name='index'),
-    path('list_view', core.views.ListView.as_view(), name='list_view'),
+    path('list_view', core.views.Posts.as_view(), name='posts'),
     path('post/<int:pk>', core.views.PostDetail.as_view(), name='post_detail'),
     path('post/<int:pk>/edit/', core.views.PostUpdate.as_view(), name='post_update'),
     path('post/<int:pk>/delete/', core.views.PostDelete.as_view(), name='post_delete'),

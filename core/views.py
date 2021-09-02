@@ -30,7 +30,7 @@ class IndexView(TitleMixin, TemplateView):
     title = 'Глаавная'
 
 
-class ListView(TitleMixin, ListView):
+class Posts(TitleMixin, ListView):
     title = 'Посты'
 
     def get_filters(self) -> core.filters.Post:
@@ -65,7 +65,7 @@ class PostUpdate(TitleMixin, UpdateView):
         return 'Редактирование' + str(self.get_object())
 
     def get_success_url(self):
-        return reverse('core:list_view')
+        return reverse('core:posts')
 
 
 class PostDelete(TitleMixin, DeleteView):
@@ -75,7 +75,7 @@ class PostDelete(TitleMixin, DeleteView):
         return 'Удаление ' + str(self.get_object())
 
     def get_success_url(self):
-        return reverse('core:list_view')
+        return reverse('core:posts')
 
 
 class PostCreate(TitleMixin, CreateView):
@@ -85,7 +85,7 @@ class PostCreate(TitleMixin, CreateView):
     template_name = 'core/post_form.html'
 
     def get_success_url(self):
-        return reverse('core:list_view')
+        return reverse('core:posts')
 
     def post(self, request, **kwargs):
         request.POST = request.POST.copy()
