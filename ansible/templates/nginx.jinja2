@@ -1,0 +1,22 @@
+
+server {
+    listen 80;
+    server_name default;
+
+    access_log  /var/log/www/blog/access.log;
+    error_log   /var/log/www/blog/error.log;
+
+    location /node_modules {
+        alias /var/www/blog/static/node_modules;
+    }
+
+    location /static {
+        alias /var/www/blog/static;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:8854/;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Host $http_host;
+    }
+}
