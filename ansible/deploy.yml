@@ -1,4 +1,4 @@
-# ansible-playbook -i inv deploy.yml -e "POSTGRES_PASSWORD=test_project_superSecret"
+# ansible-playbook -i inv deploy.yml -b -e "POSTGRES_PASSWORD=test_project_superSecret"
 ---
 - hosts: "all"
   become: true
@@ -10,7 +10,7 @@
       state: "latest"
       update_cache: true
 
-  - name: Install pip packages
+  - name: Install pip packages to host
     pip:
       name: [ 'docker-py' ]
 
