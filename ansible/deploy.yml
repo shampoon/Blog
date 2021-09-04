@@ -9,10 +9,12 @@
       name: ['nginx', 'docker.io', 'python3-pip']
       state: "latest"
       update_cache: true
+    become: yes
 
   - name: Install pip packages to host
     pip:
-      name: [ 'docker-py' ]
+      name: [ 'docker' ]
+    become: yes
 
   - name: Pull docker image
     shell: docker pull shampoon/djanago_blog
@@ -54,8 +56,8 @@
       image: shampoon/djanago_blog
       restart_policy: always
       state: started
-#      links:
-#        - "Blog-db:db"
+      links:
+        - "blog-db:db"
       ports:
         - 0.0.0.0:8000:8000
       volumes:
