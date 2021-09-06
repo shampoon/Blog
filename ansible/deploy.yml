@@ -59,7 +59,7 @@
       links:
         - "blog-db:db"
       ports:
-        - 0.0.0.0:8000:8000
+        - 127.0.0.1:8854:80
       volumes:
         - "/var/www/blog/static:/static"
       env:

@@ -1,3 +1,3 @@
 docker run --rm -ti -v /var/docker/Blog/data/:/data/ -p0.0.0.0:8001:8000 shampoon/djanago_blog
 docker build -t shampoon/djanago_blog .
-ansible all -i inv -m ping
+docker push shampoon/djanago_blog
